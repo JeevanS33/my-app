@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const [text, setText] = useState('Enter text here');
+  const [text, setText] = useState("Enter text here");
   const handleTextChange = (event) => {
     setText(event.target.value);
   };
@@ -15,14 +15,14 @@ export default function TextForm(props) {
   };
 
   const convertLeCleartext = () => {
-    let newText = '';
+    let newText = "";
     setText(newText);
   };
 
   const copyText = () => {
     var textArea = document.getElementById("mybox");
     textArea.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
   };
 
   const removeSpace = () => {
@@ -31,23 +31,23 @@ export default function TextForm(props) {
   };
 
   const minutesRead = () => {
-    const words = text.split(/\s/).filter((word) => word.trim() !== '').length;
+    const words = text.split(/\s/).filter((word) => word.trim() !== "").length;
     const averageReadingSpeed = 200; // words per minute
     return (words / averageReadingSpeed).toFixed(2);
   };
 
   const textareaStyle = {
-    backgroundColor: props.mode === 'dark' ? '#333333' : 'white',
-    color: props.mode === 'dark' ? 'white' : '#333333',
+    backgroundColor: props.mode === "dark" ? "#333333" : "white",
+    color: props.mode === "dark" ? "white" : "#333333",
   };
 
   const textareaStyle2 = {
-    color: props.mode === 'dark' ? 'white' : '#333333',
+    color: props.mode === "dark" ? "white" : "#333333",
   };
 
   return (
     <>
-      <div className='container'style={textareaStyle2}>
+      <div className="container" style={textareaStyle2}>
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
@@ -59,18 +59,38 @@ export default function TextForm(props) {
             style={textareaStyle}
           ></textarea>
         </div>
-        <button className='btn btn-primary mx-1' onClick={convertToUppercase}>Convert to Uppercase</button>
-        <button className='btn btn-primary mx-1' onClick={convertToLowercase}>Convert to Lowercase</button>
-        <button className='btn btn-primary mx-1' onClick={convertLeCleartext}>Clear Text</button>
-        <button className='btn btn-primary mx-1' onClick={copyText}>Copy Text</button>
-        <button className='btn btn-primary mx-1' onClick={removeSpace}>Remove Extra Space</button>
+        <button
+          className="btn btn-primary mx-1 my-2"
+          onClick={convertToUppercase}
+        >
+          Convert to Uppercase
+        </button>
+        <button className="btn btn-primary mx-1" onClick={convertToLowercase}>
+          Convert to Lowercase
+        </button>
+        <button className="btn btn-primary mx-1" onClick={convertLeCleartext}>
+          Clear Text
+        </button>
+        <button className="btn btn-primary mx-1" onClick={copyText}>
+          Copy Text
+        </button>
+        <button className="btn btn-primary mx-1" onClick={removeSpace}>
+          Remove Extra Space
+        </button>
       </div>
       <div className="container my-3" style={textareaStyle2}>
         <h1>Your Text Summary</h1>
-        <p>{text.split(/\s/).filter((word) => word.trim() !== '').length} words and {text.length} characters</p>
+        <p>
+          {text.split(/\s/).filter((word) => word.trim() !== "").length} words
+          and {text.length} characters
+        </p>
         <p>{minutesRead()} Minutes read</p>
         <h2>Preview</h2>
-        <p>{text.length>0?text:"Enter somthing in the textbox to preview it"}</p>
+        <p>
+          {text.length > 0
+            ? text
+            : "Enter somthing in the textbox to preview it"}
+        </p>
       </div>
     </>
   );
